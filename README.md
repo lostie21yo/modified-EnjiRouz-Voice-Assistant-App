@@ -1,5 +1,4 @@
-# Voice Assistant Python App for Windows, Linux & MacOS
-
+# Voice Assistant Python App for Windows, Linux & MacOS (оригинальный репозиторий)[https://github.com/EnjiRouz/Voice-Assistant-App]
 ### Возможности приложения
 Данный проект голосового ассистента на Python 3 для Windows и Linux умеет:
 * распознавать и синтезировать речь в offline-режиме (без доступа к Интернету);
