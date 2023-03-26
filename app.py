@@ -121,16 +121,21 @@ def setup_assistant_voice():
     Установка голоса по умолчанию (индекс может меняться в зависимости от настроек операционной системы)
     """
     voices = ttsEngine.getProperty("voices")
-
-    if assistant.speech_language == "en":
-        assistant.recognition_language = "en-US"
-        if assistant.sex == "female":
-            # Microsoft Zira Desktop - English (United States)
-            ttsEngine.setProperty("voice", voices[1].id)
+    print(voices)
+    try:
+        if assistant.speech_language == "en":
+            assistant.recognition_language = "en-US"
+            if assistant.sex == "female":
+                # Microsoft Zira Desktop - English (United States)
+                ttsEngine.setProperty("voice", voices[1].id)
+            else:
+                # Microsoft David Desktop - English (United States)
+                ttsEngine.setProperty("voice", voices[2].id)
         else:
-            # Microsoft David Desktop - English (United States)
-            ttsEngine.setProperty("voice", voices[2].id)
-    else:
+            assistant.recognition_language = "ru-RU"
+            # Microsoft Irina Desktop - Russian
+            ttsEngine.setProperty("voice", voices[0].id)
+    except:
         assistant.recognition_language = "ru-RU"
         # Microsoft Irina Desktop - Russian
         ttsEngine.setProperty("voice", voices[0].id)
@@ -531,8 +536,8 @@ if __name__ == "__main__":
 
     # настройка данных пользователя
     person = OwnerPerson()
-    person.name = "Даша"
-    person.home_city = "Казань"
+    person.name = ""
+    person.home_city = "Самара"
     person.native_language = "ru"
     person.target_language = "en"
 
@@ -555,7 +560,7 @@ if __name__ == "__main__":
         # старт записи речи с последующим выводом распознанной речи и удалением записанного в микрофон аудио
         voice_input = record_and_recognize_audio()
         os.remove("microphone-results.wav")
-        print(colored(voice_input, "blue"))
+        print(colored(voice_input, "green"))
 
         # отделение комманд от дополнительной информации (аргументов)
         voice_input = voice_input.split(" ")
